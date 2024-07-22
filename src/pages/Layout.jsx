@@ -18,6 +18,7 @@ const Layout = () => {
       </nav>
 
       <Outlet />
+      <footer>Footer</footer>
     </>
   );
 };
