@@ -2,15 +2,21 @@ import ReactDom from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout, Home, Blogs, Contact, NoPage } from "./pages";
 
+const pages = [
+  { path: "blogs", element: <Blogs /> },
+  { path: "contact", element: <Contact /> },
+  { path: "*", element: <NoPage /> },
+];
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NoPage />} />
+          {pages.map((page) => (
+            <Route key={page.path} path={page.path} element={page.element} />
+          ))}
         </Route>
       </Routes>
     </BrowserRouter>
